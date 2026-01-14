@@ -2,7 +2,7 @@
 
 Easily create fake inventories that players can interact with.
 
-##### [Download](https://github.com/NukkitX/FakeInventories/releases)
+##### [Download](https://motci.cn/job/FakeInventories/)
 
 ## Usage
 
@@ -23,8 +23,8 @@ Easily create fake inventories that players can interact with.
 ```xml
     <repositories>
         <repository>
-            <id>opencollab</id>
-            <url>https://repo.opencollab.dev/maven-snapshots</url>
+            <id>repo-lanink-cn</id>
+            <url>https://repo.lanink.cn/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -32,7 +32,7 @@ Easily create fake inventories that players can interact with.
         <dependency>
             <groupId>com.nukkitx</groupId>
             <artifactId>fakeinventories</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
+            <version>1.0.3-MOT-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
