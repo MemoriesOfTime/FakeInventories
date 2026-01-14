@@ -87,7 +87,7 @@ public abstract class FakeInventory extends ContainerInventory {
             Server.getInstance().getScheduler().scheduleDelayedTask(() -> {
                 BlockVector3 blockPosition = blocks.get(index);
                 UpdateBlockPacket updateBlock = new UpdateBlockPacket();
-                updateBlock.blockRuntimeId = GlobalBlockPalette.getOrCreateRuntimeId(who.getLevel().getFullBlock(blockPosition.x, blockPosition.y, blockPosition.z));
+                updateBlock.blockRuntimeId = GlobalBlockPalette.getOrCreateRuntimeId(who.getGameVersion(), who.getLevel().getFullBlock(blockPosition.x, blockPosition.y, blockPosition.z));
                 updateBlock.flags = UpdateBlockPacket.FLAG_ALL_PRIORITY;
                 updateBlock.x = blockPosition.getX();
                 updateBlock.y = blockPosition.getY();

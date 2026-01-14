@@ -7,7 +7,7 @@
     <groupId>com.nukkitx</groupId>
     <artifactId>fakeinventories</artifactId>
     <name>Fake Inventories</name>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3-MOT-SNAPSHOT</version>
 
     <licenses>
         <license>
@@ -39,28 +39,26 @@
     </scm>
 
     <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>nukkitx-releases</name>
-            <url>https://repo.nukkitx.com/release</url>
-        </repository>
         <snapshotRepository>
-            <id>snapshots</id>
-            <name>nukkitx-snapshots</name>
-            <url>https://repo.nukkitx.com/snapshot</url>
+            <id>repo-lanink-cn</id>
+            <url>https://repo.lanink.cn/repository/maven-snapshots/</url>
         </snapshotRepository>
+        <repository>
+            <id>repo-lanink-cn</id>
+            <url>https://repo.lanink.cn/repository/maven-releases/</url>
+        </repository>
     </distributionManagement>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <repositories>
         <repository>
-            <id>nukkitx-repo</id>
-            <url>https://repo.nukkitx.com/snapshot/</url>
+            <id>repo-lanink-cn</id>
+            <url>https://repo.lanink.cn/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -68,14 +66,28 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.0</version>
+            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>cn.nukkit</groupId>
-            <artifactId>nukkit</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>Nukkit</artifactId>
+            <version>MOT-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -51,7 +51,7 @@ public class ChestFakeInventory extends FakeInventory {
 
     protected void placeChest(Player who, BlockVector3 pos) {
         UpdateBlockPacket updateBlock = new UpdateBlockPacket();
-        updateBlock.blockRuntimeId = GlobalBlockPalette.getOrCreateRuntimeId(BlockID.CHEST, 0);
+        updateBlock.blockRuntimeId = GlobalBlockPalette.getOrCreateRuntimeId(who.getGameVersion(), BlockID.CHEST, 0);
         updateBlock.flags = UpdateBlockPacket.FLAG_ALL_PRIORITY;
         updateBlock.x = pos.x;
         updateBlock.y = pos.y;
