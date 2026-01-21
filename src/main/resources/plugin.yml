@@ -4,3 +4,4 @@ api: ["1.0.7"]
 author: SupremeMortal
 description: Create fake inventories
 main: com.nukkitx.fakeinventories.FakeInventoriesPlugin
+load: STARTUP

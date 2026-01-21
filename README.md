@@ -1,5 +1,12 @@
 # Fake Inventories
 
+<p align="center">
+  <a href="/README.md"><img alt="English" src="https://img.shields.io/badge/English-d9d9d9"></a>
+  <a href="/README_zh.md"><img alt="中文" src="https://img.shields.io/badge/中文-d9d9d9"></a>
+</p>
+
+------
+
 Easily create fake inventories that players can interact with.
 
 ##### [Download](https://motci.cn/job/FakeInventories/)
@@ -144,7 +151,3 @@ public class MyPlugin extends PluginBase {
         </dependency>
     </dependencies>
 ```
-
-## Todo
-
-- ~~Add Hopper inventory~~ ✓
