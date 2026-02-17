@@ -60,6 +60,13 @@ HopperFakeInventory inventory = new HopperFakeInventory();
 HopperFakeInventory inventory = new HopperFakeInventory(null, "Custom Title");
 ```
 
+**Furnace (3 slots):**
+```java
+FurnaceFakeInventory inventory = new FurnaceFakeInventory();
+// or with custom title
+FurnaceFakeInventory inventory = new FurnaceFakeInventory(null, "Custom Title");
+```
+
 ### 4. Set Items
 
 ```java
