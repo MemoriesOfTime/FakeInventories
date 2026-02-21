@@ -67,6 +67,13 @@ FurnaceFakeInventory inventory = new FurnaceFakeInventory();
 FurnaceFakeInventory inventory = new FurnaceFakeInventory(null, "Custom Title");
 ```
 
+**Grindstone (3 slots):**
+```java
+GrindstoneFakeInventory inventory = new GrindstoneFakeInventory();
+// or with custom title
+GrindstoneFakeInventory inventory = new GrindstoneFakeInventory(null, "Custom Title");
+```
+
 ### 4. Set Items
 
 ```java

@@ -13,7 +13,7 @@
 
 ## 功能特性
 
-- 支持单箱子（27格）、双箱子（54格）、漏斗（5格）、熔炉（3格）四种物品栏类型
+- 支持单箱子（27格）、双箱子（54格）、漏斗（5格）、熔炉（3格）、砂轮（3格）五种物品栏类型
 - 支持自定义标题
 - 支持监听玩家点击事件
 - 支持取消物品操作（实现纯 GUI 菜单）
@@ -73,6 +73,13 @@ HopperFakeInventory inventory = new HopperFakeInventory(null, "自定义标题")
 FurnaceFakeInventory inventory = new FurnaceFakeInventory();
 // 或使用自定义标题
 FurnaceFakeInventory inventory = new FurnaceFakeInventory(null, "自定义标题");
+```
+
+**砂轮（3格）：**
+```java
+GrindstoneFakeInventory inventory = new GrindstoneFakeInventory();
+// 或使用自定义标题
+GrindstoneFakeInventory inventory = new GrindstoneFakeInventory(null, "自定义标题");
 ```
 
 ### 4. 设置物品
