@@ -13,6 +13,7 @@ import cn.nukkit.network.protocol.DataPacket;
 import cn.nukkit.network.protocol.UpdateBlockPacket;
 import com.nukkitx.fakeinventories.inventory.FakeInventories;
 import com.nukkitx.fakeinventories.inventory.FakeInventory;
+import com.nukkitx.fakeinventories.inventory.FakeInventoryLike;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -44,14 +45,14 @@ public class FakeInventoriesListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onTransaction(InventoryTransactionEvent event) {
-        Map<FakeInventory, List<SlotChangeAction>> actions = new HashMap<>();
+        Map<FakeInventoryLike, List<SlotChangeAction>> actions = new HashMap<>();
         Player source = event.getTransaction().getSource();
         long creationTime = event.getTransaction().getCreationTime();
         for (InventoryAction action : event.getTransaction().getActions()) {
             if (action instanceof SlotChangeAction) {
                 SlotChangeAction slotChange = (SlotChangeAction) action;
-                if (slotChange.getInventory() instanceof FakeInventory) {
-                    FakeInventory inventory = (FakeInventory) slotChange.getInventory();
+                if (slotChange.getInventory() instanceof FakeInventoryLike) {
+                    FakeInventoryLike inventory = (FakeInventoryLike) slotChange.getInventory();
                     List<SlotChangeAction> slotChanges = actions.computeIfAbsent(inventory, fakeInventory -> new ArrayList<>());
 
                     slotChanges.add(slotChange);
@@ -60,7 +61,7 @@ public class FakeInventoriesListener implements Listener {
         }
 
         boolean cancel = false;
-        for (Map.Entry<FakeInventory, List<SlotChangeAction>> entry : actions.entrySet()) {
+        for (Map.Entry<FakeInventoryLike, List<SlotChangeAction>> entry : actions.entrySet()) {
             for (SlotChangeAction action : entry.getValue()) {
                 if (entry.getKey().onSlotChange(source, action)) {
                     cancel = true;

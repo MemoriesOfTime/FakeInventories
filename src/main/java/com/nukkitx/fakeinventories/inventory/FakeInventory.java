@@ -18,10 +18,15 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class FakeInventory extends ContainerInventory {
+public abstract class FakeInventory extends ContainerInventory implements FakeInventoryLike {
     private static final BlockVector3 ZERO = new BlockVector3(0, 0, 0);
 
-    static final Map<Player, FakeInventory> open = new ConcurrentHashMap<>();
+    /**
+     * Tracks the currently-open fake inventory per player. Value type is the
+     * common marker interface since SAI-compatible variants (e.g.
+     * {@link FurnaceFakeInventory}) may not extend {@link FakeInventory}.
+     */
+    static final Map<Player, FakeInventoryLike> open = new ConcurrentHashMap<>();
 
     protected final Map<Player, List<BlockVector3>> blockPositions = new HashMap<>();
     private final List<FakeInventoryListener> listeners = new CopyOnWriteArrayList<>();
@@ -129,7 +134,8 @@ public abstract class FakeInventory extends ContainerInventory {
         Preconditions.checkState(!closed, "Already closed");
     }
 
-    void close() {
+    @Override
+    public void close() {
         Preconditions.checkState(!closed, "Already closed");
         getViewers().forEach(player -> player.removeWindow(this));
         closed = true;
