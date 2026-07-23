@@ -31,14 +31,11 @@ public class DoubleChestFakeInventory extends ChestFakeInventory {
 
 
     @Override
-    public void onOpen(Player who) {
-        this.viewers.add(who);
-
-        List<BlockVector3> blocks = onOpenBlock(who);
-        blockPositions.put(who, blocks);
-
+    protected void scheduleFakeOpen(Player who, List<BlockVector3> blocks) {
         Server.getInstance().getScheduler().scheduleDelayedTask(() -> {
-            onFakeOpen(who, blocks);
+            if (isOpenFor(who)) {
+                onFakeOpen(who, blocks);
+            }
         }, 3);
     }
 

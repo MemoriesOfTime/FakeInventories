@@ -90,6 +90,9 @@ inventory.addListener(event -> {
 
     // Handle click logic
     player.sendMessage("You clicked slot " + slot);
+
+    // Works for chest, double chest, hopper, and SAI-compatible furnace inventories
+    Inventory nukkitInventory = event.getNukkitInventory();
 });
 ```
 
@@ -131,13 +134,17 @@ public class MyPlugin extends PluginBase {
                     break;
             }
 
-            p.removeWindow(event.getInventory()); // Close menu
+            p.removeWindow(event.getNukkitInventory()); // Close any fake inventory variant
         });
 
         player.addWindow(menu);
     }
 }
 ``` 
+
+`event.getInventory()` is retained for legacy callers and returns `null` for fake
+inventory variants that do not extend `FakeInventory`, such as `FurnaceFakeInventory`.
+Use `event.getNukkitInventory()` when interacting with Nukkit window APIs.
 
 ## Maven Dependency
 

@@ -1,6 +1,7 @@
 package com.nukkitx.fakeinventories.inventory;
 
 import cn.nukkit.Player;
+import cn.nukkit.inventory.Inventory;
 import cn.nukkit.inventory.transaction.action.SlotChangeAction;
 import cn.nukkit.math.BlockVector3;
 
@@ -17,6 +18,16 @@ import java.util.List;
  * to treat all variants uniformly.</p>
  */
 public interface FakeInventoryLike {
+
+    /**
+     * @return the Nukkit inventory registered in the player's window map.
+     */
+    default Inventory getNukkitInventory() {
+        if (this instanceof Inventory inventory) {
+            return inventory;
+        }
+        throw new IllegalStateException("FakeInventoryLike implementations must also implement Inventory");
+    }
 
     /**
      * @return virtual block positions currently placed for {@code player}, or

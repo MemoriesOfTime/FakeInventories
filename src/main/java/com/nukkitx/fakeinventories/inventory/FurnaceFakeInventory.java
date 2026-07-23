@@ -202,7 +202,7 @@ public class FurnaceFakeInventory extends FurnaceInventory implements FakeInvent
     @Override
     public void close() {
         Preconditions.checkState(!closed, "Already closed");
-        getViewers().forEach(player -> player.removeWindow(this));
+        List.copyOf(getViewers()).forEach(player -> player.removeWindow(this));
         closed = true;
     }
 

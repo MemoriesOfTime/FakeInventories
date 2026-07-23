@@ -98,6 +98,9 @@ inventory.addListener(event -> {
 
     // 处理点击逻辑
     player.sendMessage("你点击了第 " + slot + " 格");
+
+    // 单箱、双箱、漏斗和兼容 SAI 的熔炉均可使用
+    Inventory nukkitInventory = event.getNukkitInventory();
 });
 ```
 
@@ -139,13 +142,17 @@ public class MyPlugin extends PluginBase {
                     break;
             }
 
-            p.removeWindow(event.getInventory()); // 关闭菜单
+            p.removeWindow(event.getNukkitInventory()); // 关闭任意假库存类型
         });
 
         player.addWindow(menu);
     }
 }
 ```
+
+`event.getInventory()` 为兼容旧调用方而保留；对于不继承 `FakeInventory` 的类型
+（例如 `FurnaceFakeInventory`）会返回 `null`。调用 Nukkit 窗口 API 时请使用
+`event.getNukkitInventory()`。
 
 ## Maven 依赖
 

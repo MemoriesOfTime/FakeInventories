@@ -2,6 +2,7 @@ package com.nukkitx.fakeinventories.inventory;
 
 import cn.nukkit.Player;
 import cn.nukkit.event.Cancellable;
+import cn.nukkit.inventory.Inventory;
 import cn.nukkit.inventory.transaction.action.SlotChangeAction;
 
 public class FakeSlotChangeEvent implements Cancellable {
@@ -27,20 +28,26 @@ public class FakeSlotChangeEvent implements Cancellable {
     /**
      * @return the legacy {@link FakeInventory} view, or {@code null} when the
      *         source inventory is a SAI-compatible variant that does not extend
-     *         {@link FakeInventory} (e.g. {@link FurnaceFakeInventory}); use
-     *         {@link #getInventoryLike()} for those.
+     *         {@link FakeInventory} (e.g. {@link FurnaceFakeInventory}). Use
+     *         {@link #getNukkitInventory()} with Nukkit window APIs or
+     *         {@link #getInventoryLike()} for fake-inventory-specific operations.
      */
     public FakeInventory getInventory() {
         return inventory instanceof FakeInventory ? (FakeInventory) inventory : null;
     }
 
     /**
-     * @return the source inventory regardless of concrete parent class. Prefer
-     *         this over {@link #getInventory()} when SAI-compatible variants must
-     *         be handled.
+     * @return the source fake inventory regardless of concrete parent class.
      */
     public FakeInventoryLike getInventoryLike() {
         return inventory;
+    }
+
+    /**
+     * @return the Nukkit inventory handle for every fake inventory variant.
+     */
+    public Inventory getNukkitInventory() {
+        return inventory.getNukkitInventory();
     }
 
     public boolean isCancelled() {

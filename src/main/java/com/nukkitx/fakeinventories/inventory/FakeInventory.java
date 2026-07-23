@@ -57,7 +57,15 @@ public abstract class FakeInventory extends ContainerInventory implements FakeIn
         List<BlockVector3> blocks = onOpenBlock(who);
         blockPositions.put(who, blocks);
 
+        scheduleFakeOpen(who, blocks);
+    }
+
+    protected void scheduleFakeOpen(Player who, List<BlockVector3> blocks) {
         onFakeOpen(who, blocks);
+    }
+
+    protected final boolean isOpenFor(Player who) {
+        return open.get(who) == this && this.viewers.contains(who) && who.getWindowId(this) != -1;
     }
 
     protected void onFakeOpen(Player who, List<BlockVector3> blocks) {
@@ -137,7 +145,7 @@ public abstract class FakeInventory extends ContainerInventory implements FakeIn
     @Override
     public void close() {
         Preconditions.checkState(!closed, "Already closed");
-        getViewers().forEach(player -> player.removeWindow(this));
+        List.copyOf(getViewers()).forEach(player -> player.removeWindow(this));
         closed = true;
     }
 
